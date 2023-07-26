@@ -1,0 +1,64 @@
+using System;
+
+namespace StudentMarksProgram
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            const int NumberOfSubjects = 4;
+            string[] gradeStatus = { "fail", "pass", "credit", "Distinction" };
+
+            Console.WriteLine();
+            string studentName = Console.ReadLine();
+
+            int[] marks = new int[NumberOfSubjects];
+            int sum = 0;
+
+            Console.Write("Student Results: ");
+
+            for (int i = 0; i < NumberOfSubjects; i++)
+            {
+             //   Console.Write("Student Results: ");
+                marks[i] = Convert.ToInt32(Console.ReadLine());
+                sum += marks[i];
+            }
+
+            double average = (double)sum / NumberOfSubjects;
+            int highestMark = marks[0];
+            int lowestMark = marks[0];
+
+            for (int i = 1; i < NumberOfSubjects; i++)
+            {
+                if (marks[i] > highestMark)
+                    highestMark = marks[i];
+
+                if (marks[i] < lowestMark)
+                    lowestMark = marks[i];
+            }
+
+            string status;
+
+            if (average < 50)
+                status = gradeStatus[0];
+            else if (average < 65)
+                status = gradeStatus[1];
+            else if (average < 75)
+                status = gradeStatus[2];
+            else
+                status = gradeStatus[3];
+
+            Console.WriteLine("\n--------- Student Report ---------");
+            Console.WriteLine($"Name: {studentName}");
+            Console.WriteLine($"Marks: [{string.Join(", ", marks)}]");
+            Console.WriteLine($"Total Marks: {sum}");
+            Console.WriteLine($"Average Marks: {average:F2}");
+            Console.WriteLine($"Status: {status}");
+            Console.WriteLine($"Highest Mark: {highestMark}");
+            Console.WriteLine($"Lowest Mark: {lowestMark}");
+            Console.WriteLine($"Year: {2023}");
+
+            Console.ReadLine();
+        }
+    }
+}
